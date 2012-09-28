@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  mean: 1.5
+  deviation: 1.5
+
+two:
+  name: MyString
+  mean: 1.5
+  deviation: 1.5

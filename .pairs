@@ -1,0 +1,15 @@
+# .pairs - configuration for 'git pair'
+# place in project or home directory
+pairs:
+  bs: Ben Smith; bsmith
+  jt: Johannes Tuchscherer; jtuchscherer
+  mba: Michael Barinek
+  ms: Mark Stewart
+  df: David Farber
+  dlb: Damien Le Berrigaud; dleberrigaud
+  sh: Stephan Hagemann;  shagemann
+  db: Dakota Bailey; dbailey
+  mb: Mason Blier; mblier
+email:
+  prefix: pair
+  domain: pivotallabs.com

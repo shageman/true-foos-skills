@@ -1,0 +1,55 @@
+<h1>Listing games</h1>
+
+<table>
+  <tr>
+    <th>Black1</th>
+    <th>Black2</th>
+    <th>Yellow1</th>
+    <th>Yellow2</th>
+    <th>Yellow Win?</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @games.each do |game| %>
+  <tr>
+    <td><%= game.black_1_player.name %></td>
+    <td><%= game.black_2_player.name %></td>
+    <td><%= game.yellow_1_player.name %></td>
+    <td><%= game.yellow_2_player.name %></td>
+    <td><%= game.result %></td>
+    <td><%= link_to 'Edit', edit_game_path(game) %></td>
+    <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Game', new_game_path %>
+
+
+<h1>Current Ranking</h1>
+
+<table>
+  <tr>
+    <th>Rank</th>
+    <th>Name</th>
+    <th>Mean</th>
+    <th>Deviation</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% Player.all.each_with_index do |player, index| %>
+      <tr>
+        <td><%= index +1 %></td>
+        <td><%= player.name %></td>
+        <td><%= player.mean %></td>
+        <td><%= player.deviation %></td>
+        <td><%= link_to 'Show', player %></td>
+        <td><%= link_to 'Edit', edit_player_path(player) %></td>
+      </tr>
+  <% end %>
+</table>
