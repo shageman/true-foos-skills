@@ -1,15 +1,4 @@
 class PlayersController < ApplicationController
-  # GET /players
-  # GET /players.json
-  def index
-    @players = Player.order("mean DESC").all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @players }
-    end
-  end
-
   # GET /players/1
   # GET /players/1.json
   def show

@@ -12,20 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :black_1_player_id %><br />
-    <%= f.select :black_1_player_id, Player.all.collect{|player| [player.name, player.id]} %>
+    <%= f.label :black_front_player_id %><br />
+    <%= f.select :black_front_player_id, Player.all.collect{|player| [player.name, player.id]} %>
   </div>
   <div class="field">
-    <%= f.label :black_2_player_id %><br />
-    <%= f.select :black_2_player_id, Player.all.collect{|player| [player.name, player.id]} %>
+    <%= f.label :black_back_player_id %><br />
+    <%= f.select :black_back_player_id, Player.all.collect{|player| [player.name, player.id]} %>
   </div>
   <div class="field">
-    <%= f.label :yellow_1_player_id %><br />
-    <%= f.select :yellow_1_player_id, Player.all.collect{|player| [player.name, player.id]} %>
+    <%= f.label :yellow_front_player_id %><br />
+    <%= f.select :yellow_front_player_id, Player.all.collect{|player| [player.name, player.id]} %>
   </div>
   <div class="field">
-    <%= f.label :yellow_2_player_id %><br />
-    <%= f.select :yellow_2_player_id, Player.all.collect{|player| [player.name, player.id]} %>
+    <%= f.label :yellow_back_player_id %><br />
+    <%= f.select :yellow_back_player_id, Player.all.collect{|player| [player.name, player.id]} %>
   </div>
   <div class="field">
     <%= f.label :result, "Did yellow win?" %><br />

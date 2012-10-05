@@ -2,11 +2,11 @@
 
 <table>
   <tr>
-    <th>Black1</th>
-    <th>Black2</th>
-    <th>Yellow1</th>
-    <th>Yellow2</th>
-    <th>Yellow Win?</th>
+    <th>Black Front</th>
+    <th>Black Back</th>
+    <th>Yellow Front</th>
+    <th>Yellow Back</th>
+    <th>Who Won?</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,11 +14,11 @@
 
 <% @games.each do |game| %>
   <tr>
-    <td><%= game.black_1_player.name %></td>
-    <td><%= game.black_2_player.name %></td>
-    <td><%= game.yellow_1_player.name %></td>
-    <td><%= game.yellow_2_player.name %></td>
-    <td><%= game.result %></td>
+    <td><%= game.black_front_player.name %></td>
+    <td><%= game.black_back_player.name %></td>
+    <td><%= game.yellow_front_player.name %></td>
+    <td><%= game.yellow_back_player.name %></td>
+    <td><%= game.result ? "YELLOW" : "BLACK" %></td>
     <td><%= link_to 'Edit', edit_game_path(game) %></td>
     <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
@@ -46,8 +46,8 @@
       <tr>
         <td><%= index +1 %></td>
         <td><%= player.name %></td>
-        <td><%= player.mean %></td>
-        <td><%= player.deviation %></td>
+        <td><%= player.mean.round(2) %></td>
+        <td><%= player.deviation.round(2) %></td>
         <td><%= link_to 'Show', player %></td>
         <td><%= link_to 'Edit', edit_player_path(player) %></td>
       </tr>
