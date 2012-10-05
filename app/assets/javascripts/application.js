@@ -13,3 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$("[data-isplayer=true]").hover(
+    function () {
+        var highlight_player = $(this).data("player")
+        $("[data-player='" + highlight_player + "']").addClass('highlight')
+    },
+    function () {
+        var highlight_player = $(this).data("player")
+        $("[data-player='" + highlight_player + "']").removeClass('highlight')
+    }
+);

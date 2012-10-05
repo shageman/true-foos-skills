@@ -4,4 +4,8 @@ class Player < ActiveRecord::Base
 
   validates :name, :length => { :minimum => 3, :maximum => 20 }
   validates_uniqueness_of :name
+
+  def underscored_name
+    "#{name.gsub(" ", "_")}"
+  end
 end
