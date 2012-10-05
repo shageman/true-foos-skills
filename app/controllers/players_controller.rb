@@ -14,8 +14,14 @@ class PlayersController < ApplicationController
   end
 
   # GET /players/new
+  # GET /players/new.json
   def new
     @player = Player.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @player }
+    end
   end
 
   # GET /players/1/edit
