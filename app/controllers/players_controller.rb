@@ -4,6 +4,7 @@ class PlayersController < ApplicationController
     @players = Player.order("mean DESC").all
 
     respond_to do |format|
+      format.html
       format.json { render json: @players }
     end
   end
@@ -36,7 +37,7 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       if @player.save
-        format.html { redirect_to games_path, notice: 'Player was successfully created.' }
+        format.html { redirect_to players_path, notice: 'Player was successfully created.' }
         format.json { render json: @player, status: :created, location: @player }
       else
         format.html { render action: "new" }

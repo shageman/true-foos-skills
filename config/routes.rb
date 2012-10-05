@@ -4,5 +4,5 @@ FoosballRanks::Application.routes.draw do
 
   resource :stats, only: [:show]
 
-  root to: "games#index"
+  root to: "players#index"
 end

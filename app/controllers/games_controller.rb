@@ -14,7 +14,7 @@ class GamesController < ApplicationController
     @game = Game.new
 
     respond_to do |format|
-      format.html { render layout: "new" }
+      format.html
       format.json { render json: @game }
     end
   end
