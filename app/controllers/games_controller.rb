@@ -106,8 +106,8 @@ class GamesController < ApplicationController
     pr = PlayersRepo.new
 
     Game.all.each do |game|
-      team_yellow = [pr.find(game.yellow_1_player_id).rating, pr.find(game.yellow_2_player_id).rating]
-      team_black = [pr.find(game.black_1_player_id).rating, pr.find(game.black_2_player_id).rating]
+      team_yellow = [pr.find(game.yellow_front_player_id).rating, pr.find(game.yellow_back_player_id).rating]
+      team_black = [pr.find(game.black_front_player_id).rating, pr.find(game.black_back_player_id).rating]
       if game.result
         FactorGraph.new([team_yellow, team_black], [1,2]).update_skills
       else
