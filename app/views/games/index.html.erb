@@ -46,8 +46,8 @@
       <tr>
         <td><%= index +1 %></td>
         <td><%= player.name %></td>
-        <td><%= player.mean.round(2) %></td>
-        <td><%= player.deviation.round(2) %></td>
+        <td><%= player.mean.round %></td>
+        <td><%= player.deviation.round %></td>
         <td><%= link_to 'Show', player %></td>
         <td><%= link_to 'Edit', edit_player_path(player) %></td>
       </tr>
