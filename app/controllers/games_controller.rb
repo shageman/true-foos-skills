@@ -1,8 +1,7 @@
-require 'saulabs/trueskill'
-
-
 class GamesController < ApplicationController
-  include ::Saulabs::TrueSkill
+
+  before_filter :inject_services
+
   # GET /games
   def index
     @games = Game.all
@@ -31,7 +30,7 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
-        recalculate_all_skills
+        @player_rating_repository.recalculate_all_skills
         format.html { redirect_to games_url, notice: 'Game was successfully created.' }
         format.json { render json: @game, status: :created, location: @game }
       else
@@ -46,7 +45,7 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
 
     if @game.update_attributes(params[:game])
-      recalculate_all_skills
+      @player_rating_repository.recalculate_all_skills
       redirect_to games_url, notice: 'Game was successfully updated.'
     else
       render action: "edit"
@@ -57,49 +56,14 @@ class GamesController < ApplicationController
   def destroy
     @game = Game.find(params[:id])
     @game.destroy
-    recalculate_all_skills
+    @player_rating_repository.recalculate_all_skills
 
     redirect_to games_url
   end
 
   private
 
-  class PlayersRepo
-    include ::Saulabs::TrueSkill
-
-    def initialize
-      @players = Player.all
-      @players.map { |player|
-        player.rating = Rating.new(1000.0, 100.0, 1.0)
-      }
-    end
-
-    def find(id)
-      @players.select { |player| player.id == id }.first
-    end
-
-    def save_back
-      @players.each do |player|
-        player.mean = player.rating.mean
-        player.deviation = player.rating.deviation
-        player.save!
-      end
-    end
-  end
-
-  def recalculate_all_skills
-    pr = PlayersRepo.new
-
-    Game.all.each do |game|
-      team_yellow = [pr.find(game.yellow_front_player_id).rating, pr.find(game.yellow_back_player_id).rating]
-      team_black = [pr.find(game.black_front_player_id).rating, pr.find(game.black_back_player_id).rating]
-      if game.result
-        FactorGraph.new([team_yellow, team_black], [1, 2]).update_skills
-      else
-        FactorGraph.new([team_black, team_yellow], [1, 2]).update_skills
-      end
-    end
-
-    pr.save_back
+  def inject_services
+    @player_rating_repository = PlayerRatingRepository.new
   end
 end
