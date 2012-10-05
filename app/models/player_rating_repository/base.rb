@@ -41,7 +41,7 @@ module PlayerRatingRepository
     private
 
     def games
-      Game.non_deleted.all
+      Game.non_deleted.last_month.all
     end
 
     def team_yellow(game)

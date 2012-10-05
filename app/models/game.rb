@@ -14,6 +14,10 @@ class Game < ActiveRecord::Base
     where("deleted_at is null")
   end
 
+  def self.last_month
+    where("created_at > ?", 1.month.ago)
+  end
+
   def destroy
     return true if deleted_at
     self.deleted_at = Time.now
