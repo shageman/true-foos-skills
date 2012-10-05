@@ -11,12 +11,13 @@
     <%=  render partial: "shared/player_ranking", :locals => { :players => @players, show_edit: true } %>
     <%= link_to 'More Stats', stats_path, class: "btn btn-info" %>
   </div>
-  <div class="span6 offset1">
+  <div class="span7">
     <h1>Games <%= link_to 'Record new', new_game_path, class: "btn btn-success" %></h1>
 
     <table class="table table-striped table-hover">
       <thead>
       <tr>
+        <th>When</th>
         <th>Black Front</th>
         <th>Black Back</th>
         <th>Yellow Front</th>
@@ -31,6 +32,7 @@
       <tbody>
       <% @games.each do |game| %>
           <tr>
+            <td><%= time_ago_in_words(game.created_at) -%> ago</td>
             <td><%= game.black_front_player.name %></td>
             <td><%= game.black_back_player.name %></td>
             <td><%= game.yellow_front_player.name %></td>
