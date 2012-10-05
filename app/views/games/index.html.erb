@@ -32,7 +32,7 @@
       <tbody>
       <% @games.each do |game| %>
           <tr>
-            <td><%= time_ago_in_words(game.created_at) -%> ago</td>
+            <td style="width: 50px;"><%= game.created_at.strftime("%b %d")%></td>
             <td><%= game.black_front_player.name %></td>
             <td><%= game.black_back_player.name %></td>
             <td><%= game.yellow_front_player.name %></td>
