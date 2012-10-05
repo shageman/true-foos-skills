@@ -27,6 +27,8 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
+    params[:game][:result] = !!params.delete(:commit).match("Yellow")
+
     @game = Game.new(params[:game])
 
     respond_to do |format|

@@ -97,14 +97,18 @@ div {
     left: 10px;
     top: 170px;
   }
-  .result_stuff {
-    padding: 20px;
-    background-color: white;
+  .yellow_won {
     position: absolute;
-    left: 340px;
-    top: 450px;
-    label {
-      display:inline;
-    }
+    left: 100px;
+    top: 400px;
+    display:inline;
+    padding: 40px;
+  }
+  .black_won {
+    position: absolute;
+    left: 570px;
+    top: 400px;
+    display:inline;
+    padding: 40px;
   }
 }

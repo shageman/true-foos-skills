@@ -29,13 +29,8 @@
       <%= f.select :yellow_back_player_id, players_array, :include_blank => true %>
     </div>
 
-    <div class="result_stuff">
-      <div class="field result">
-        <%= f.check_box :result %>
-        <%= f.label :result, "Did yellow win?"%>
-      </div>
       <div class="actions">
-        <%= f.submit class: "btn btn-success" %>
+        <%= f.submit "Yellow won!", class: "btn btn-large btn-warning yellow_won" %>
+        <%= f.submit "Black won!", class: "btn btn-large btn-inverse black_won" %>
       </div>
-    </div>
 <% end %>

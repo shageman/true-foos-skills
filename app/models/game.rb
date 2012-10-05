@@ -5,6 +5,11 @@ class Game < ActiveRecord::Base
   belongs_to :yellow_front_player, foreign_key: :yellow_front_player_id, class_name: "Player"
   belongs_to :yellow_back_player, foreign_key: :yellow_back_player_id, class_name: "Player"
 
+  validates_presence_of :black_back_player
+  validates_presence_of :yellow_back_player
+  validates_presence_of :black_front_player
+  validates_presence_of :yellow_front_player
+
   def self.non_deleted
     where("deleted_at is null")
   end
