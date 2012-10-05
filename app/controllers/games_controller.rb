@@ -4,14 +4,8 @@ require 'saulabs/trueskill'
 class GamesController < ApplicationController
   include ::Saulabs::TrueSkill
   # GET /games
-  # GET /games.json
   def index
     @games = Game.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @games }
-    end
   end
 
   # GET /games/new
@@ -48,33 +42,24 @@ class GamesController < ApplicationController
   end
 
   # PUT /games/1
-  # PUT /games/1.json
   def update
     @game = Game.find(params[:id])
 
-    respond_to do |format|
-      if @game.update_attributes(params[:game])
-        recalculate_all_skills
-        format.html { redirect_to games_url, notice: 'Game was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
-      end
+    if @game.update_attributes(params[:game])
+      recalculate_all_skills
+      redirect_to games_url, notice: 'Game was successfully updated.'
+    else
+      render action: "edit"
     end
   end
 
   # DELETE /games/1
-  # DELETE /games/1.json
   def destroy
     @game = Game.find(params[:id])
     @game.destroy
     recalculate_all_skills
 
-    respond_to do |format|
-      format.html { redirect_to games_url }
-      format.json { head :no_content }
-    end
+    redirect_to games_url
   end
 
   private
@@ -84,13 +69,13 @@ class GamesController < ApplicationController
 
     def initialize
       @players = Player.all
-      @players.map {|player|
+      @players.map { |player|
         player.rating = Rating.new(1000.0, 100.0, 1.0)
       }
     end
 
     def find(id)
-      @players.select{|player| player.id == id}.first
+      @players.select { |player| player.id == id }.first
     end
 
     def save_back
@@ -109,9 +94,9 @@ class GamesController < ApplicationController
       team_yellow = [pr.find(game.yellow_front_player_id).rating, pr.find(game.yellow_back_player_id).rating]
       team_black = [pr.find(game.black_front_player_id).rating, pr.find(game.black_back_player_id).rating]
       if game.result
-        FactorGraph.new([team_yellow, team_black], [1,2]).update_skills
+        FactorGraph.new([team_yellow, team_black], [1, 2]).update_skills
       else
-        FactorGraph.new([team_black, team_yellow], [1,2]).update_skills
+        FactorGraph.new([team_black, team_yellow], [1, 2]).update_skills
       end
     end
 
