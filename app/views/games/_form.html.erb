@@ -1,38 +1,41 @@
-<%- players_array = Player.order(:name).all.collect{|player| [player.name, player.id]} %>
+<%- players_array = Player.order(:name).all.collect { |player| [player.name, player.id] } %>
 <%= form_for(@game) do |f| %>
-  <% if @game.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
+    <% if @game.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
 
-      <ul>
-      <% @game.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @game.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field black_front">
+      <%= f.label :black_front_player_id %>
+      <%= f.select :black_front_player_id, players_array, :include_blank => true %>
     </div>
-  <% end %>
+    <div class="field black_back">
+      <%= f.label :black_back_player_id %>
+      <%= f.select :black_back_player_id, players_array, :include_blank => true %>
+    </div>
+    <div class="field yellow_front">
+      <%= f.label :yellow_front_player_id %>
+      <%= f.select :yellow_front_player_id, players_array, :include_blank => true %>
+    </div>
+    <div class="field yellow_back">
+      <%= f.label :yellow_back_player_id %>
+      <%= f.select :yellow_back_player_id, players_array, :include_blank => true %>
+    </div>
 
-  <div class="field">
-    <%= f.label :black_front_player_id %><br />
-    <%= f.select :black_front_player_id, players_array, :include_blank => true %>
-  </div>
-  <div class="field">
-    <%= f.label :black_back_player_id %><br />
-    <%= f.select :black_back_player_id, players_array, :include_blank => true %>
-  </div>
-  <div class="field">
-    <%= f.label :yellow_front_player_id %><br />
-    <%= f.select :yellow_front_player_id, players_array, :include_blank => true %>
-  </div>
-  <div class="field">
-    <%= f.label :yellow_back_player_id %><br />
-    <%= f.select :yellow_back_player_id, players_array, :include_blank => true %>
-  </div>
-  <div class="field">
-    <%= f.label :result, "Did yellow win?" %><br />
-    <%= f.check_box :result %>
-  </div>
-  <div class="actions">
-    <%= f.submit class: "btn btn-success" %>
-  </div>
+    <div class="result_stuff">
+      <div class="field result">
+        <%= f.check_box :result %>
+        <%= f.label :result, "Did yellow win?"%>
+      </div>
+      <div class="actions">
+        <%= f.submit class: "btn btn-success" %>
+      </div>
+    </div>
 <% end %>

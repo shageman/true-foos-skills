@@ -67,3 +67,43 @@ div {
     list-style: square;
   }
 }
+
+.new_body {
+  background: 800px 600px image-url("table.JPG");
+  height: 600px;
+  width: 800px;
+
+  .black_front {
+    position: absolute;
+    left: 400px;
+    top: 120px;
+  }
+  .black_back {
+    label {
+      color: white;
+    }
+    position: absolute;
+    left: 550px;
+    top: 190px;
+  }
+  .yellow_front {
+    position: absolute;
+    left: 100px;
+    top: 240px;
+  }
+  .yellow_back {
+    position: absolute;
+    left: 10px;
+    top: 170px;
+  }
+  .result_stuff {
+    padding: 20px;
+    background-color: white;
+    position: absolute;
+    left: 340px;
+    top: 450px;
+    label {
+      display:inline;
+    }
+  }
+}
