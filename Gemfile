@@ -2,10 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 
-group :development, :test do
-  gem 'sqlite3'
-end
-
+gem "pg"
 gem 'anjlab-bootstrap-rails', '>= 2.1', :require => 'bootstrap-rails'
 gem "trueskill"
 
@@ -17,6 +14,3 @@ end
 
 gem 'jquery-rails'
 
-group :production do
-  gem "pg"
-end

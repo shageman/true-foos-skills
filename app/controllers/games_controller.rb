@@ -5,6 +5,7 @@ class GamesController < ApplicationController
   # GET /games
   def index
     @games = Game.all
+    @players = Player.order("mean DESC").all
   end
 
   # GET /games/new
@@ -30,7 +31,7 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
-        @player_rating_repository.recalculate_all_skills
+        @player_rating_repository.recalculate_all_skills.save_back
         format.html { redirect_to games_url, notice: 'Game was successfully created.' }
         format.json { render json: @game, status: :created, location: @game }
       else
@@ -45,7 +46,7 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
 
     if @game.update_attributes(params[:game])
-      @player_rating_repository.recalculate_all_skills
+      @player_rating_repository.recalculate_all_skills.save_back
       redirect_to games_url, notice: 'Game was successfully updated.'
     else
       render action: "edit"
@@ -56,7 +57,7 @@ class GamesController < ApplicationController
   def destroy
     @game = Game.find(params[:id])
     @game.destroy
-    @player_rating_repository.recalculate_all_skills
+    @player_rating_repository.recalculate_all_skills.save_back
 
     redirect_to games_url
   end
@@ -64,6 +65,6 @@ class GamesController < ApplicationController
   private
 
   def inject_services
-    @player_rating_repository = PlayerRatingRepository.new
+    @player_rating_repository = PlayerRatingRepository::Base.new
   end
 end
