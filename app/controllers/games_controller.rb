@@ -11,7 +11,17 @@ class GamesController < ApplicationController
   # GET /games/new
   # GET /games/new.json
   def new
-    @game = Game.new
+    @game = if params[:rotate_and_switch_from_last]
+      last_game = Game.order("created_at DESC").first
+      Game.new(
+          yellow_front_player_id: last_game.black_back_player.id,
+          yellow_back_player_id: last_game.black_front_player.id,
+          black_front_player_id: last_game.yellow_back_player.id,
+          black_back_player_id: last_game.yellow_front_player.id
+      )
+    else
+      Game.new
+    end
 
     respond_to do |format|
       format.html

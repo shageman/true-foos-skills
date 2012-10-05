@@ -1,4 +1,7 @@
 <%- players_array = Player.order(:name).all.collect { |player| [player.name, player.id] } %>
+
+<%= link_to "Rotate and switch from last", new_game_path(rotate_and_switch_from_last: true), class: "btn btn-large btn-success" %>
+
 <%= form_for(@game) do |f| %>
     <% if @game.errors.any? %>
         <div id="error_explanation">
