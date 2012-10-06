@@ -12,4 +12,5 @@
  *= require_self
  *= require_tree .
  *= require __jquery.tablesorter/themes/blue/style
- */
+ *= require chosen/chosen/chosen
+*/

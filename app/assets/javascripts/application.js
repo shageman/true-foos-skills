@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require __jquery.tablesorter/jquery.tablesorter.min
+//= require chosen/chosen/chosen.jquery.min
 //= require_tree .
 
 $("[data-isplayer=true]").hover(
@@ -26,8 +27,8 @@ $("[data-isplayer=true]").hover(
     }
 )
 
-$(function()
-    {
-        $("table").tablesorter();
-    }
-);
+$(function () {
+    $("table").tablesorter();
+    $("select").chosen();
+});
+
