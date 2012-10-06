@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require __jquery.tablesorter/jquery.tablesorter.min
 //= require_tree .
 
 $("[data-isplayer=true]").hover(
@@ -22,5 +23,11 @@ $("[data-isplayer=true]").hover(
     function () {
         var highlight_player = $(this).data("player")
         $("[data-player='" + highlight_player + "']").removeClass('highlight')
+    }
+)
+
+$(function()
+    {
+        $("table").tablesorter();
     }
 );
