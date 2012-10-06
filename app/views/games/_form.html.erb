@@ -4,7 +4,7 @@
 
 <%= form_for(@game) do |f| %>
     <% if @game.errors.any? %>
-        <div id="error_explanation">
+        <div id="error_explanation" class="error_explanation">
           <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
 
           <ul>
@@ -32,10 +32,19 @@
       <%= f.select :yellow_back_player_id, players_array, :include_blank => true %>
     </div>
 
-      <div class="actions">
-        <%= link_to "Rotate!", "#", id: "switch_black_players", class: "switch_black btn btn-small btn-success" %>
-        <%= link_to "Rotate!", "#", id: "switch_yellow_players", class: "switch_yellow btn btn-small btn-success" %>
-        <%= f.submit "Yellow won!", class: "btn btn-large btn-warning yellow_won" %>
-        <%= f.submit "Black won!", class: "btn btn-large btn-inverse black_won" %>
-      </div>
+    <div class="field goals_yellow">
+      <%= f.label :goals_yellow, "Goals yellow (optional)" %>
+      <%= f.text_field :goals_yellow, size: 5 %>
+    </div>
+    <div class="field goals_black">
+      <%= f.label :goals_black, "Goals black (optional)" %>
+      <%= f.text_field :goals_black, size: 5 %>
+    </div>
+
+    <div class="actions">
+      <%= link_to "Rotate!", "#", id: "switch_black_players", class: "switch_black btn btn-small btn-success" %>
+      <%= link_to "Rotate!", "#", id: "switch_yellow_players", class: "switch_yellow btn btn-small btn-success" %>
+      <%= f.submit "Yellow won!", class: "btn btn-large btn-warning yellow_won" %>
+      <%= f.submit "Black won!", class: "btn btn-large btn-inverse black_won" %>
+    </div>
 <% end %>

@@ -122,6 +122,29 @@ div {
     display:inline;
     padding: 40px;
   }
+
+  .goals_yellow {
+    label { color: white; }
+    position: absolute;
+    left: 100px;
+    top: 520px;
+    width: 200px;
+    input { width: 30px; }
+  }
+  .goals_black {
+    label { color: white;}
+    position: absolute;
+    left: 570px;
+    top: 520px;
+    width: 200px;
+    input { width: 30px; }
+  }
+  .error_explanation {
+    position: absolute;
+    left: 180px;
+    top: 650px;
+    width: 400px;
+  }
 }
 
 .highlight {
