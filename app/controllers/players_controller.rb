@@ -5,7 +5,7 @@ class PlayersController < ApplicationController
   # GET /players.json
   def index
     @players = Player.order_by_ranking.all
-    @news = News.all
+    @news = News.order("id DESC").all
 
     respond_to do |format|
       format.html
