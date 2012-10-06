@@ -34,7 +34,7 @@ module PlayerRatingRepository
 
     def players
       @players.sort do |player1, player2|
-        player2.mean <=> player1.mean
+        player2.mean - player2.deviation <=> player1.mean - player1.deviation
       end
     end
 

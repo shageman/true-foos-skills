@@ -5,7 +5,6 @@ class GamesController < ApplicationController
   # GET /games
   def index
     @games = Game.non_deleted.order("created_at DESC").all
-    @players = Player.order("mean DESC").all
   end
 
   # GET /games/new

@@ -1,7 +1,7 @@
 class PlayersController < ApplicationController
   # GET /players.json
   def index
-    @players = Player.order("mean DESC").all
+    @players = Player.order_by_ranking.all
 
     respond_to do |format|
       format.html
