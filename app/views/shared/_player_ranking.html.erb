@@ -5,7 +5,8 @@
     <th>Rank</th>
     <th>Name</th>
     <th>Rating</th>
-    <th>± Error</th>
+    <th>± E</th>
+    <th>Rating - E</th>
     <%- if show_edit %>
         <th></th>
     <%- end %>
@@ -21,6 +22,7 @@
         </td>
         <td><%= player.mean.round %></td>
         <td><%= player.deviation.round %></td>
+        <td><%= player.mean.round - player.deviation.round %></td>
         <%- if show_edit %>
             <td><%= link_to 'Edit', edit_player_path(player), class: "btn btn-mini" %></td>
         <%- end %>
