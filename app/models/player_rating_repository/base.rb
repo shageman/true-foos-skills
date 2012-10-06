@@ -7,7 +7,7 @@ module PlayerRatingRepository
     def initialize
       @players = Player.all
       @players.map { |player|
-        player.rating = Rating.new(1500.0, 1200.0, 1.0)
+        player.rating = Rating.new(1500.0, 1000.0, 1.0)
       }
     end
 
