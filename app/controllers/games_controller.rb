@@ -2,6 +2,8 @@ class GamesController < ApplicationController
 
   before_filter :inject_services
 
+  http_basic_authenticate_with :name => ENV["USERNAME"], :password => ENV["PASSWORD"]
+
   # GET /games
   def index
     @games = Game.non_deleted.order("created_at DESC").all

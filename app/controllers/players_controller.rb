@@ -1,4 +1,7 @@
 class PlayersController < ApplicationController
+
+  http_basic_authenticate_with :name => ENV["USERNAME"], :password => ENV["PASSWORD"], :except => [:index]
+
   # GET /players.json
   def index
     @players = Player.order_by_ranking.all

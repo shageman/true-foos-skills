@@ -1,4 +1,7 @@
 class StatsController < ApplicationController
+
+  http_basic_authenticate_with :name => ENV["USERNAME"], :password => ENV["PASSWORD"]
+
   def show
     @number_of_games = Game.count
     @number_of_yellow_wins = Game.where(result: true).count
