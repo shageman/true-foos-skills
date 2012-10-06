@@ -16,6 +16,11 @@
 //= require chosen/chosen/chosen.jquery.min
 //= require_tree .
 
+$(function () {
+    $("table").tablesorter();
+    $("select").chosen();
+});
+
 $("[data-isplayer=true]").hover(
     function () {
         var highlight_player = $(this).data("player")
@@ -27,8 +32,18 @@ $("[data-isplayer=true]").hover(
     }
 )
 
-$(function () {
-    $("table").tablesorter();
-    $("select").chosen();
-});
+$("#switch_black_players").on("click", function(e) {
+    e.preventDefault()
+    var back_player = $("#game_black_back_player_id").val()
+    var front_player = $("#game_black_front_player_id").val()
+    $("#game_black_back_player_id").val(front_player).trigger("liszt:updated")
+    $("#game_black_front_player_id").val(back_player).trigger("liszt:updated")
+})
 
+$("#switch_yellow_players").on("click", function(e) {
+    e.preventDefault()
+    var back_player = $("#game_yellow_back_player_id").val()
+    var front_player = $("#game_yellow_front_player_id").val()
+    $("#game_yellow_back_player_id").val(front_player).trigger("liszt:updated")
+    $("#game_yellow_front_player_id").val(back_player).trigger("liszt:updated")
+})

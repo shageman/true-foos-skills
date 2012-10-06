@@ -75,14 +75,13 @@ div {
   width: 800px;
 
   .black_front {
+    label { color: white; }
     position: absolute;
     left: 400px;
     top: 120px;
   }
   .black_back {
-    label {
-      color: white;
-    }
+    label { color: white; }
     position: absolute;
     left: 550px;
     top: 190px;
@@ -97,6 +96,18 @@ div {
     left: 10px;
     top: 170px;
   }
+
+  .switch_black {
+    position: absolute;
+    left: 640px;
+    top: 160px;
+  }
+  .switch_yellow {
+    position: absolute;
+    left: 20px;
+    top: 240px;
+  }
+
   .yellow_won {
     position: absolute;
     left: 100px;

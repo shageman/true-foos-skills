@@ -33,6 +33,8 @@
     </div>
 
       <div class="actions">
+        <%= link_to "Rotate!", "#", id: "switch_black_players", class: "switch_black btn btn-small btn-success" %>
+        <%= link_to "Rotate!", "#", id: "switch_yellow_players", class: "switch_yellow btn btn-small btn-success" %>
         <%= f.submit "Yellow won!", class: "btn btn-large btn-warning yellow_won" %>
         <%= f.submit "Black won!", class: "btn btn-large btn-inverse black_won" %>
       </div>
