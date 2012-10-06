@@ -1,4 +1,6 @@
 FoosballRanks::Application.routes.draw do
+  resources :news
+
   resources :games
   resources :players
 

@@ -8,17 +8,12 @@
 
 <div class="row">
   <div class="span6 offset3">
-    <h3>Notes on the ranking</h3>
+    <h3>Site updates</h3>
     <dl>
-      <dt>October 5:</dt> <dd>Ranking is now determined by
-        <emph>rating - error</emph>
-      </dd>
-      <dt>October 5:</dt><dd>Players now
-        <emph>start with a rating of 1500 and am error of 1000</emph>
-      </dd>
-      <dt>October 3:</dt><dd>Rankings are based on
-        <emph>games of the last 30 days only.</emph>
-      </dd>
+      <% @news.each do |news| %>
+          <dt><%= news.created_at.strftime("%B %d") %></dt>
+          <dd><%= news.content %></dd>
+      <% end %>
     </dl>
   </div>
 </div>
