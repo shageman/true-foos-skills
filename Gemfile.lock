@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:benjaminleesmith/trueskill.git
+  remote: git://github.com/benjaminleesmith/trueskill.git
   revision: e404f45af5b3fb86982881ce064a9c764cc6a901
   specs:
     trueskill (1.0.0)
