@@ -5,8 +5,12 @@ class Player < ActiveRecord::Base
   validates :name, :length => { :minimum => 3, :maximum => 20 }
   validates_uniqueness_of :name
 
-  def self.order_by_ranking
-    order("(mean - deviation) DESC")
+  def self.ranked_players
+    where("deviation < 100").order("(mean - deviation) DESC")
+  end
+
+  def self.unranked_players
+    where("deviation >= 100").order("(mean - deviation) DESC")
   end
 
   def underscored_name

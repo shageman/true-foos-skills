@@ -4,7 +4,8 @@ class PlayersController < ApplicationController
 
   # GET /players.json
   def index
-    @players = Player.order_by_ranking.all
+    @ranked_players = Player.ranked_players.all
+    @unranked_players = Player.unranked_players.all
     @news = News.order("id DESC").all
 
     respond_to do |format|

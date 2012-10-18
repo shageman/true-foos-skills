@@ -2,7 +2,15 @@
 
 <div class="row">
   <div class="span12">
-    <%= render partial: "shared/player_ranking", :locals => {:players => @players, show_edit: true} %>
+    <%= render partial: "shared/player_ranking", :locals => {:players => @ranked_players, show_edit: true} %>
+  </div>
+</div>
+
+<h4>Unranked players</h4>
+
+<div class="row">
+  <div class="span12">
+    <%= render partial: "shared/player_ranking", :locals => {:players => @unranked_players, show_edit: true} %>
   </div>
 </div>
 
