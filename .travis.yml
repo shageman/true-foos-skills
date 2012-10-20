@@ -1,0 +1,3 @@
+script: "rspec spec"
+rvm:
+  - 1.9.3
