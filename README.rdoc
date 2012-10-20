@@ -1,4 +1,4 @@
-== true foos skills{<img src="https://secure.travis-ci.org/shageman/true-foos-skills.png" alt="Dependency Status" />}[https://secure.travis-ci.org/shageman/true-foos-skills]{<img src="https://gemnasium.com/shageman/true-foos-skills.png" alt="Dependency Status" />}[https://gemnasium.com/shageman/true-foos-skills]
+== true foos skills{<img src="https://secure.travis-ci.org/shageman/true-foos-skills.png" alt="Build Status" />}[https://secure.travis-ci.org/shageman/true-foos-skills] {<img src="https://gemnasium.com/shageman/true-foos-skills.png" alt="Dependency Status" />}[https://gemnasium.com/shageman/true-foos-skills]
 
 A Rails app to...
  * Register foos players.
