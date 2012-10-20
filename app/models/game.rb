@@ -14,8 +14,8 @@ class Game < ActiveRecord::Base
     where("deleted_at is null")
   end
 
-  def self.last_month
-    where("created_at > ?", 1.month.ago)
+  def self.relevant_for_ranking
+    where("created_at > ?", 2.weeks.ago)
   end
 
   def destroy
