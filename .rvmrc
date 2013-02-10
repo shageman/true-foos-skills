@@ -1,1 +1,1 @@
-rvm --create ruby-1.9.3-p194@foosball_ranks
+rvm --create ruby-1.9.3@foosball_ranks
