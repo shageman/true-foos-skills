@@ -1,36 +1,23 @@
-class Game < ActiveRecord::Base
-  attr_accessible :black_front_player_id, :black_back_player_id, :result, :yellow_front_player_id, :yellow_back_player_id, :goals_yellow, :goals_black
 
-  belongs_to :black_front_player, foreign_key: :black_front_player_id, class_name: "Player"
-  belongs_to :black_back_player, foreign_key: :black_back_player_id, class_name: "Player"
-  belongs_to :yellow_front_player, foreign_key: :yellow_front_player_id, class_name: "Player"
-  belongs_to :yellow_back_player, foreign_key: :yellow_back_player_id, class_name: "Player"
+class Game
+  #{"id"=>1, "in_progress"=>false, "team_1"=>{"defense"=>"The Lyon", "offense"=>"The Gern"}, "team_1_score"=>5, "team_2"=>{"defense"=>"After School Special", "offense"=>"Jitters McSplashyPants"}, "team_2_score"=>2}
+  attr_accessor :id, :in_progress, :team_1, :team_1_score, :team_2, :team_2_score
 
-  validates_presence_of :black_back_player, :yellow_back_player, :black_front_player, :yellow_front_player
-  validates :goals_yellow, :goals_black, allow_nil: true, :numericality => {only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 10}
-  validate :result_fits_with_score
+  def initialize(player_looker_upper, json)
+    @id = json["id"]
+    @team_1 = player_looker_upper.player_by_hash(json["team_1"]["defense"]), player_looker_upper.player_by_hash(json["team_1"]["offense"])
+    @team_2 = player_looker_upper.player_by_hash(json["team_2"]["defense"]), player_looker_upper.player_by_hash(json["team_2"]["offense"])
 
-  def self.non_deleted
-    where("deleted_at is null")
+    @team_1_score = json["team_1_score"]
+    @team_2_score = json["team_2_score"]
   end
 
-  def self.relevant_for_ranking
-    where("created_at > ?", 2.weeks.ago)
+  def has_result?
+    @team_1_score && @team_2_score && true
   end
 
-  def destroy
-    return true if deleted_at
-    self.deleted_at = Time.now
-    save(validate: false)
-  end
-
-  def result_fits_with_score
-    return unless goals_yellow.present? && goals_black.present?
-
-    if result && goals_yellow <= goals_black #yellow wins, but has less or equal goals to black
-      errors.add(:goals_yellow, "Yellow has to score more goals than black to win.")
-    elsif !result && goals_black <= goals_yellow #black wins, but has less or equal goals to black
-      errors.add(:goals_black, "Black has to score more goals than black to win.")
-    end
+  def team1_won?
+    @team_1_score > @team_2_score
   end
 end
+

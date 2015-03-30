@@ -1,19 +1,22 @@
-class Player < ActiveRecord::Base
-  attr_accessible :deviation, :mean, :name
-  attr_accessor :rating
+class Player
+  # {"id"=>5, "nickname"=>"GM"}
+  attr_accessor :id, :nickname, :rating
 
-  validates :name, :length => { :minimum => 3, :maximum => 20 }
-  validates_uniqueness_of :name
-
-  def self.ranked_players
-    where("deviation < 250").order("(mean - deviation) DESC")
+  def initialize(json)
+    @id = json["id"]
+    @nickname = json["nickname"]
+    @rating = Saulabs::TrueSkill::Rating.new(1500.0, 1000.0, 1.0)
   end
 
-  def self.unranked_players
-    where("deviation >= 250").order("(mean - deviation) DESC")
+  def mean
+    rating.mean
+  end
+
+  def deviation
+    rating.deviation
   end
 
   def underscored_name
-    "#{name.gsub(" ", "_")}"
+    "#{nickname.gsub(/\s/, "_")}"
   end
 end

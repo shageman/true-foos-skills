@@ -13,37 +13,22 @@
 //= require jquery
 //= require jquery_ujs
 //= require __jquery.tablesorter/jquery.tablesorter.min
-//= require chosen/chosen/chosen.jquery.min
-//= require_tree .
+//= require_self
 
-$(function () {
-    $("table").tablesorter();
-    $("select").chosen();
+$(document).ready(function () {
+    $(function () {
+        $("table").tablesorter();
+        $("select").chosen();
+    });
+
+    $("[data-isplayer=true]").hover(
+        function () {
+            var highlight_player = $(this).data("player")
+            $("[data-player='" + highlight_player + "']").addClass('highlight')
+        },
+        function () {
+            var highlight_player = $(this).data("player")
+            $("[data-player='" + highlight_player + "']").removeClass('highlight')
+        }
+    )
 });
-
-$("[data-isplayer=true]").hover(
-    function () {
-        var highlight_player = $(this).data("player")
-        $("[data-player='" + highlight_player + "']").addClass('highlight')
-    },
-    function () {
-        var highlight_player = $(this).data("player")
-        $("[data-player='" + highlight_player + "']").removeClass('highlight')
-    }
-)
-
-$("#switch_black_players").on("click", function(e) {
-    e.preventDefault()
-    var back_player = $("#game_black_back_player_id").val()
-    var front_player = $("#game_black_front_player_id").val()
-    $("#game_black_back_player_id").val(front_player).trigger("liszt:updated")
-    $("#game_black_front_player_id").val(back_player).trigger("liszt:updated")
-})
-
-$("#switch_yellow_players").on("click", function(e) {
-    e.preventDefault()
-    var back_player = $("#game_yellow_back_player_id").val()
-    var front_player = $("#game_yellow_front_player_id").val()
-    $("#game_yellow_back_player_id").val(front_player).trigger("liszt:updated")
-    $("#game_yellow_front_player_id").val(back_player).trigger("liszt:updated")
-})

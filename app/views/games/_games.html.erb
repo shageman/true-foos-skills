@@ -1,0 +1,36 @@
+<table class="table table-striped table-hover tablesorter">
+  <thead>
+  <tr>
+    <th>Team 1 Offence</th>
+    <th>Team 1 Defence</th>
+    <th>Team 2 Offence</th>
+    <th>Team 2 Defence</th>
+    <th>Who Won?</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% games.each do |game| %>
+      <tr>
+        <% [game.team_1[1], game.team_1[0]].each do |player| %>
+            <td data-isplayer="true" data-player="<%= player.underscored_name -%>">
+              <%- if game.has_result? && game.team1_won? %>
+                  <b><%= player.nickname %></b>
+              <%- else %>
+                  <%= player.nickname %>
+              <%- end %>
+            </td>
+        <% end %>
+        <% [game.team_2[1], game.team_2[0]].each do |player| %>
+            <td data-isplayer="true" data-player="<%= player.underscored_name -%>">
+              <%- if game.has_result? && game.team1_won? %>
+                  <%= player.nickname %>
+              <%- else %>
+                  <b><%= player.nickname %></b>
+              <%- end %>
+            </td>
+        <% end %>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

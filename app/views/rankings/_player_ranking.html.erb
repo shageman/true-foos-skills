@@ -1,0 +1,25 @@
+<table class="table table-striped table-hover tablesorter">
+  <thead>
+  <tr>
+    <th>Rank</th>
+    <th>Name</th>
+    <th>Rating</th>
+    <th>E</th>
+    <th>Rating - E</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% players.each_with_index do |player, index| %>
+      <tr>
+        <td><%= index +1 %></td>
+        <td data-isplayer="true" data-player="<%= player.underscored_name %>">
+          <%= player.nickname %>
+        </td>
+        <td><%= player.mean.round %></td>
+        <td><%= player.deviation.round %></td>
+        <td><%= player.mean.round - player.deviation.round %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
